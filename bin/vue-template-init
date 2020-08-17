@@ -1,0 +1,137 @@
+#!/usr/bin/env node
+/*
+ * @Descripttion: vue init
+ * @Author: all
+ * @Date: 2020-07-20 09:32:51
+ * @LastEditors: heidous
+ * @LastEditTime: 2020-08-17 15:24:02
+ */
+
+const program = require('commander');
+const home = require('user-home');
+const chalk = require('chalk');
+const path = require('path');
+const exists = require('fs').existsSync;
+const inquirer = require('inquirer');
+const download = require('download-git-repo');
+const ora = require('ora');
+const rm = require('rimraf').sync;
+const generate = require('../libs/generate');
+
+/**
+ * Usage
+ */
+
+program
+  .usage('<template-name> [project-name]')
+  .option('-c, --clone', 'use git clone')
+
+/**
+ * Help
+ */
+
+program.on('--help', () => {
+  console.log(' EXamples:');
+  console.log();
+  console.log(
+    chalk.gray('    # create a new project with an official template')
+  );
+  console.log('    $ vuetemplate init webpack my-project');
+  console.log();
+  console.log(
+    chalk.gray('    # create a new project straight from a github template')
+  );
+  console.log('    $ vuetemplate init username/repo my-project');
+  console.log();
+});
+
+function help() {
+  program.parse(process.argv);
+  if (program.args.length < 1) return program.help();
+}
+
+help();
+
+/**
+ * Settins.
+ */
+let template = program.args[1];
+if (!template) {
+  process.on('exit', () => {
+    console.error(chalk.red('需要一个模板'));
+  });
+  return false;
+}
+const hasSlash = template.indexOf('/') > -1;
+const rawName = program.args[2];
+const inPlace = !rawName || rawName === '.';
+const name = inPlace ? path.relative('../', process.cwd()) : rawName;
+const to = path.resolve(rawName || '.');
+const clone = program.clone || false;
+
+const tmp = path.join(home, '.vue-templates', template.replace(/[\/:]/g, '-'));
+
+console.log();
+process.on('exit', () => {
+  console.log();
+});
+
+if (inPlace || exists(to)) {
+  inquirer
+    .prompt([
+      {
+        type: 'confirm',
+        message: inPlace
+          ? 'Generate project in current directory'
+          : 'Target directory exists. Continue?',
+        name: 'ok'
+      }
+    ])
+    .then((answers) => {
+      if (answers.ok) {
+        console.log('ok');
+        run();
+      }
+    })
+    .catch(logger.fatal);
+} else {
+  console.log('no ok');
+  run();
+}
+/**
+ * Download a generate from a template repo.
+ *
+ * @param {String} template
+ */
+function downloadAndGenerate(template) {
+  const spinner = ora('downloading template');
+  spinner.start();
+  if (exists(tmp)) rm(tmp);
+  console.log('template, tmp: ', tmp, template, clone);
+  download(template, tmp, (err) => {
+    spinner.stop();
+    if (err)
+      console.error(
+        chalk.red(
+          'Failed to download repo ' + template + ': ' + err.message.trim()
+        )
+      );
+    generate(name, tmp, to, (err) => {
+      console.log('err: ', err);
+      if (err) console.error(chalk.red(err));
+      console.log();
+      console.log(chalk.white('Generated "%s".', name));
+    });
+  });
+}
+
+function run() {
+  console.log('hasSlash: ', hasSlash, template);
+  if (!hasSlash) {
+    const officialTemplate = 'Braveheartforyou/' + template;
+    console.log('officialTemplate: ', officialTemplate);
+    downloadAndGenerate(officialTemplate);
+  } else {
+    downloadAndGenerate(template);
+  }
+}
