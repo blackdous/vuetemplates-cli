@@ -1,5 +1,5 @@
 {
-  "name": "vue-template-cli",
+  "name": "vuetemplate-cli",
   "version": "1.0.0",
   "description": "vue-template-cli init vue project",
   "bin": {

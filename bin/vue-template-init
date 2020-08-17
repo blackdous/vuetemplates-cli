@@ -4,7 +4,7 @@
  * @Author: all
  * @Date: 2020-07-20 09:32:51
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-17 15:24:02
+ * @LastEditTime: 2020-08-17 23:16:51
  */
 
 const program = require('commander');
@@ -24,7 +24,7 @@ const generate = require('../libs/generate');
 
 program
   .usage('<template-name> [project-name]')
-  .option('-c, --clone', 'use git clone')
+  .option('-c, --clone', 'use git clone');
 
 /**
  * Help
@@ -128,7 +128,7 @@ function downloadAndGenerate(template) {
 function run() {
   console.log('hasSlash: ', hasSlash, template);
   if (!hasSlash) {
-    const officialTemplate = 'Braveheartforyou/' + template;
+    const officialTemplate = 'blackdous/' + template;
     console.log('officialTemplate: ', officialTemplate);
     downloadAndGenerate(officialTemplate);
   } else {
