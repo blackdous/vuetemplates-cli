@@ -1,6 +1,6 @@
 {
   "name": "vuetemplates-cli",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0",
   "description": "vue-template-cli init vue project",
   "bin": {
     "vuetemplates": "bin/vue-templates-init"
