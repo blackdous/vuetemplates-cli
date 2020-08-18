@@ -1,10 +1,11 @@
 {
   "name": "vuetemplates-cli",
-  "version": "1.1.0",
+  "version": "v1.1.0-alpha.1",
   "description": "vue-template-cli init vue project",
   "bin": {
     "vuetemplates": "bin/vue-templates-init"
   },
+  "publishConfig": { "registry": "https://registry.npmjs.org" },
   "scripts": {
     "complie": "npx babel libs -d dist --presets es2015",
     "watch": "npm run complie -- --watch",
@@ -12,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Braveheartforyou/vue-template-cli.git"
+    "url": "git+https://github.com/blackdous/vuetemplates-cli.git"
   },
   "author": "blackdou",
   "license": "MIT",
@@ -22,9 +23,9 @@
     "vue-templates"
   ],
   "bugs": {
-    "url": "https://github.com/Braveheartforyou/vue-template-cli/issues"
+    "url": "https://github.com/blackdous/vuetemplates-cli/issues"
   },
-  "homepage": "https://github.com/Braveheartforyou/vue-template-cli#readme",
+  "homepage": "https://github.com/blackdous/vuetemplates-cli#readme",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",

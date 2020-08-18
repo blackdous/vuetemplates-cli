@@ -4,7 +4,7 @@
  * @Author: all
  * @Date: 2020-07-20 09:32:51
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-18 09:56:28
+ * @LastEditTime: 2020-08-18 11:11:33
  */
 
 const program = require('commander');
@@ -55,6 +55,11 @@ help();
 /**
  * Settins.
  */
+let commandName = program.args[0];
+if (commandName && commandName !== 'init') {
+  console.log(chalk.red('当前只支持 init 命令'))
+  return false
+}
 let template = program.args[1];
 if (!template) {
   process.on('exit', () => {
@@ -95,7 +100,7 @@ if (inPlace || exists(to)) {
     })
     .catch(logger.fatal);
 } else {
-  console.log('no ok');
+  // console.log('no ok');
   run();
 }
 /**
@@ -107,7 +112,7 @@ function downloadAndGenerate(template) {
   const spinner = ora('downloading template');
   spinner.start();
   if (exists(tmp)) rm(tmp);
-  console.log('template, tmp: ', tmp, template, clone);
+  // console.log('template, tmp: ', tmp, template, clone);
   download(template, tmp, (err) => {
     spinner.stop();
     if (err)
@@ -126,10 +131,10 @@ function downloadAndGenerate(template) {
 }
 
 function run() {
-  console.log('hasSlash: ', hasSlash, template);
+  // console.log('hasSlash: ', hasSlash, template);
   if (!hasSlash) {
-    const officialTemplate = 'blackdous/' + template;
-    console.log('officialTemplate: ', officialTemplate);
+    const officialTemplate = 'github:blackdous/' + template;
+    // console.log('officialTemplate: ', officialTemplate);
     downloadAndGenerate(officialTemplate);
   } else {
     downloadAndGenerate(template);

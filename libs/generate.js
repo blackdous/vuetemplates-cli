@@ -3,7 +3,7 @@
  * @Author: heidous
  * @Date: 2020-08-04 14:57:19
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-14 10:59:47
+ * @LastEditTime: 2020-08-18 10:58:37
  */
 
 const chalk = require('chalk');
@@ -72,7 +72,7 @@ module.exports = function generate(name, src, dest, done) {
     opts.metalsmith.after(metalsmith, opts, helpers);
   }
 
-  console.log('done: ', done);
+  // console.log('done: ', done);
   metalsmith
     .clean(false)
     .source('.')
