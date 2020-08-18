@@ -4,7 +4,7 @@
  * @Author: all
  * @Date: 2020-07-20 09:32:51
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-17 23:16:51
+ * @LastEditTime: 2020-08-18 09:56:28
  */
 
 const program = require('commander');
@@ -36,12 +36,12 @@ program.on('--help', () => {
   console.log(
     chalk.gray('    # create a new project with an official template')
   );
-  console.log('    $ vuetemplate init webpack my-project');
+  console.log('    $ vuetemplates init webpack my-project');
   console.log();
   console.log(
     chalk.gray('    # create a new project straight from a github template')
   );
-  console.log('    $ vuetemplate init username/repo my-project');
+  console.log('    $ vuetemplates init username/repo my-project');
   console.log();
 });
 

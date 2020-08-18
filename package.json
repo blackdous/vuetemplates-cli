@@ -1,12 +1,12 @@
 {
-  "name": "vuetemplate-cli",
-  "version": "1.0.0",
+  "name": "vuetemplates-cli",
+  "version": "1.0.0-alpha.2",
   "description": "vue-template-cli init vue project",
   "bin": {
-    "vue-template-init": "bin/vue-template-init"
+    "vue-templates-init": "bin/vue-templates-init"
   },
   "scripts": {
-    "complie": "npx babel src -d dist --presets es2015",
+    "complie": "npx babel libs -d dist --presets es2015",
     "watch": "npm run complie -- --watch",
     "release": "standard-version"
   },
@@ -19,7 +19,7 @@
   "keywords": [
     "vue",
     "vue-cli",
-    "vue-template"
+    "vue-templates"
   ],
   "bugs": {
     "url": "https://github.com/Braveheartforyou/vue-template-cli/issues"
