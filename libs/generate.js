@@ -3,7 +3,7 @@
  * @Author: heidous
  * @Date: 2020-08-04 14:57:19
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-18 10:58:37
+ * @LastEditTime: 2020-08-18 11:29:41
  */
 
 const chalk = require('chalk');
@@ -20,7 +20,7 @@ const evaluate = require('./eval');
 const logger = require('./logger');
 
 const filter = (files, filters, data, done) => {
-  console.log('done: ', done);
+  // console.log('done: ', done);
   if (!filters) {
     return done();
   }

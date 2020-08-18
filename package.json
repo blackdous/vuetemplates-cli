@@ -1,11 +1,13 @@
 {
   "name": "vuetemplates-cli",
-  "version": "v1.1.0-alpha.1",
+  "version": "v1.1.0-alpha.2",
   "description": "vue-template-cli init vue project",
   "bin": {
     "vuetemplates": "bin/vue-templates-init"
   },
-  "publishConfig": { "registry": "https://registry.npmjs.org" },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "scripts": {
     "complie": "npx babel libs -d dist --presets es2015",
     "watch": "npm run complie -- --watch",
