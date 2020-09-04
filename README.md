@@ -6,6 +6,8 @@ $ vuetemplates init template-spa my-project-name
 $ cd my-project-name
 $ npm install
 $ npm run dev
+$ npm run build
+$ npm run analyzer
 ```
 
 ## Documentation
